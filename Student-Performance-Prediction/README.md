@@ -70,13 +70,13 @@ Exam_Score ← Physical_Activity  : 0.04  ❌ Gần như không tương quan
 ```
 student-performance-prediction/
 │
-├── 📓 Final_BTL_Nhóm2.ipynb          # Main notebook (EDA + Modeling + Evaluation)
+├── 📓 student-performance-prediction.ipynb          # Main notebook (EDA + Modeling + Evaluation)
 │
 ├── 📁 data/
 │   └── StudentPerformanceFactors.csv  # Raw dataset (6,607 records × 20 features)
 │
 ├── 📁 reports/
-│   └── kq_ptdl.pdf                    # Full project report (Vietnamese)
+│   └── student-performance-prediction.pdf                    # Full project report (Vietnamese)
 │
 └── 📄 README.md
 ```
