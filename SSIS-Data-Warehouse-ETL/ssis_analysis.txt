@@ -1,0 +1,325 @@
+
+PACKAGE: Load_Agg_Fact.dtsx
+  CM: Package.ConnectionManagers[localhost.wwi_data_warehouse]
+  CM: None
+
+PACKAGE: Load_Dim_City.dtsx
+  CM: Package.ConnectionManagers[localhost.wwi_data_warehouse]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_staging_area]
+  CM: None
+  PIPELINE TASK: None
+    COMPONENT: Derived Column Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+    COMPONENT: Derived Column 1 Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP Expression => (DT_I4)@[User::LineageKey]
+      PROP FriendlyExpression => (DT_I4)@[User::LineageKey]
+    COMPONENT: Insert Destination Microsoft.OLEDBDestination
+      PROP OpenRowset => [dbo].[DIM_CITY]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => 
+      PROP AccessMode => 0
+    COMPONENT: OLE DB Command Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_CITY] SET [valid_to] = ? WHERE [wwi_city_id] = ? AND [valid_to] IS NULL
+    COMPONENT: OLE DB Command 1 Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_CITY] SET [city_name] = ?,[continent] = ?,[country] = ?,[latest_recorded_population] = ?,[region] = ?,[sales_territory] = ?,[state_province] = ?,[subregion] = ? WHERE [wwi_city_id] = ?
+    COMPONENT: OLE DB Source Microsoft.OLEDBSource
+      PROP OpenRowset => 
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => SELECT   c.CityID             AS wwi_city_id,   c.CityName            AS city_name,   sp.StateProvinceName       AS state_province,   ct.CountryName          AS country,   ct.Continent           AS continent,   sp.SalesTerritory        AS sales_territory,   ct.Region            AS region,   ct.Subregion           AS subregion,   c.LatestRecordedPopulation    AS latest_recorded_population FROM Application.Cities c JOIN Application.StateProvinces sp   ON c.StateProvinceID = sp.StateProvinceID JOIN Application.Countries ct   ON sp.CountryID = ct.CountryID;
+      PROP SqlCommandVariable => 
+      PROP AccessMode => 2
+    COMPONENT: Slowly Changing Dimension Microsoft.SCD
+      PROP SqlCommand => SELECT [city_name], [continent], [country], [latest_recorded_population], [region], [sales_territory], [state_province], [subregion], [wwi_city_id],[valid_from],[valid_to] FROM [dbo].[DIM_CITY]
+    COMPONENT: Union All Microsoft.UnionAll
+
+PACKAGE: Load_Dim_Customer.dtsx
+  CM: Package.ConnectionManagers[localhost.wwi_data_warehouse]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_staging_area]
+  CM: None
+  PIPELINE TASK: None
+    COMPONENT: Derived Column Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+    COMPONENT: Derived Column 1 Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP Expression => (DT_I4)@[User::LineageKey]
+      PROP FriendlyExpression => (DT_I4)@[User::LineageKey]
+    COMPONENT: Insert Destination Microsoft.OLEDBDestination
+      PROP OpenRowset => [dbo].[DIM_CUSTOMER]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => 
+      PROP AccessMode => 0
+    COMPONENT: OLE DB Command Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_CUSTOMER] SET [valid_to] = ? WHERE [wwi_customer_id] = ? AND [valid_to] IS NULL
+    COMPONENT: OLE DB Command 1 Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_CUSTOMER] SET [bill_to_customer] = ?,[buying_group] = ?,[customer_category] = ?,[customer_name] = ?,[postal_code] = ?,[primary_contact] = ? WHERE [wwi_customer_id] = ?
+    COMPONENT: OLE DB Source Microsoft.OLEDBSource
+      PROP OpenRowset => 
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => SELECT   c.CustomerID        AS wwi_customer_id,   c.CustomerName       AS customer_name, 	c1.CustomerName as bill_to_customer,   ct.CustomerCategoryName   AS customer_category,   bg.BuyingGroupName     AS buying_group,   p.FullName         AS primary_contact,   c.PostalPostalCode     AS postal_code FROM Sales.Customers c LEFT JOIN Sales.BuyingGroups bg   ON c.BuyingGroupID = bg.BuyingGroupID LEFT JOIN Sales.CustomerCategories ct   ON c.CustomerCategoryID = ct.CustomerCategoryID LEFT JOIN Application.People p   ON c.PrimaryContactPersonID = p.PersonID LEFT JOIN Sales.Customers c1 	ON c.BillToCustomerID = c1.CustomerID ORDER BY c.CustomerID;
+      PROP SqlCommandVariable => 
+      PROP AccessMode => 2
+    COMPONENT: Slowly Changing Dimension Microsoft.SCD
+      PROP SqlCommand => SELECT [bill_to_customer], [buying_group], [customer_category], [customer_name], [postal_code], [primary_contact], [wwi_customer_id],[valid_from],[valid_to] FROM [dbo].[DIM_CUSTOMER]
+    COMPONENT: Union All Microsoft.UnionAll
+
+PACKAGE: Load_Dim_Employee.dtsx
+  CM: Package.ConnectionManagers[localhost.wwi_data_warehouse]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_staging_area]
+  CM: None
+  PIPELINE TASK: None
+    COMPONENT: Derived Column Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+    COMPONENT: Derived Column 1 Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP Expression => (DT_I4)@[User::LineageKey]
+      PROP FriendlyExpression => (DT_I4)@[User::LineageKey]
+    COMPONENT: Derived Column 2 Microsoft.DerivedColumn
+      PROP Expression => #{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[is_salesperson]} ? 1 : 0
+      PROP FriendlyExpression => is_salesperson ? 1 : 0
+    COMPONENT: Insert Destination Microsoft.OLEDBDestination
+      PROP OpenRowset => [dbo].[DIM_EMPLOYEE]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => 
+      PROP AccessMode => 0
+    COMPONENT: OLE DB Command Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_EMPLOYEE] SET [valid_to] = ? WHERE [wwi_employee_id] = ? AND [valid_to] IS NULL
+    COMPONENT: OLE DB Command 1 Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_EMPLOYEE] SET [employee_name] = ?,[is_salesperson] = ?,[preferred_name] = ? WHERE [wwi_employee_id] = ?
+    COMPONENT: OLE DB Source Microsoft.OLEDBSource
+      PROP OpenRowset => 
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => SELECT   PersonID    AS wwi_employee_id,   FullName    AS employee_name,   PreferredName  AS preferred_name,   IsSalesperson  AS is_salesperson FROM Application.People ORDER BY wwi_employee_id
+      PROP SqlCommandVariable => 
+      PROP AccessMode => 2
+    COMPONENT: Slowly Changing Dimension Microsoft.SCD
+      PROP SqlCommand => SELECT [employee_name], [is_salesperson], [preferred_name], [wwi_employee_id],[valid_from],[valid_to] FROM [dbo].[DIM_EMPLOYEE]
+    COMPONENT: Union All Microsoft.UnionAll
+
+PACKAGE: Load_Dim_Product.dtsx
+  CM: Package.ConnectionManagers[localhost.wwi_data_warehouse]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_staging_area]
+  CM: None
+  PIPELINE TASK: None
+    COMPONENT: Derived Column Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+    COMPONENT: Derived Column 1 Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP Expression => (DT_I4)@[User::LineageKey]
+      PROP FriendlyExpression => (DT_I4)@[User::LineageKey]
+    COMPONENT: Insert Destination Microsoft.OLEDBDestination
+      PROP OpenRowset => [dbo].[DIM_PRODUCT]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => 
+      PROP AccessMode => 0
+    COMPONENT: OLE DB Command Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_PRODUCT] SET [valid_to] = ? WHERE [wwi_stock_item_id] = ? AND [valid_to] IS NULL
+    COMPONENT: OLE DB Command 1 Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_PRODUCT] SET [brand] = ?,[color] = ?,[is_chiller_stock] = ?,[package_type] = ?,[product_name] = ?,[size] = ? WHERE [wwi_stock_item_id] = ?
+    COMPONENT: Slowly Changing Dimension Microsoft.SCD
+      PROP SqlCommand => SELECT [brand], [color], [is_chiller_stock], [package_type], [product_name], [size], [wwi_stock_item_id],[valid_from],[valid_to] FROM [dbo].[DIM_PRODUCT]
+    COMPONENT: staging_area_warehouse Microsoft.OLEDBSource
+      PROP OpenRowset => [Warehouse].[StockItems]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => SELECT 	si.StockItemID as wwi_stock_item_id 	, StockItemName as product_name 	, ColorName as color 	, Size 	, Brand 	, PackageTypeName as package_type 	, IsChillerStock as is_chiller_stock FROM Warehouse.StockItems si 	LEFT JOIN Warehouse.Colors c on si.ColorID = c.ColorID 	LEFT JOIN Warehouse.PackageTypes pt on si.UnitPackageID = pt.PackageTypeID ORDER BY wwi_stock_item_id
+      PROP SqlCommandVariable => 
+      PROP AccessMode => 2
+    COMPONENT: Union All Microsoft.UnionAll
+
+PACKAGE: Load_Dim_Product_Category.dtsx
+  CM: Package.ConnectionManagers[localhost.wwi_data_warehouse]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_staging_area]
+  CM: None
+  PIPELINE TASK: None
+    COMPONENT: Derived Column Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+    COMPONENT: Derived Column 1 Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP Expression => (DT_I4)@[User::LineageKey]
+      PROP FriendlyExpression => (DT_I4)@[User::LineageKey]
+    COMPONENT: Insert Destination Microsoft.OLEDBDestination
+      PROP OpenRowset => [dbo].[DIM_PRODUCT_CATEGORY]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => 
+      PROP AccessMode => 0
+    COMPONENT: OLE DB Command Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_PRODUCT_CATEGORY] SET [valid_to] = ? WHERE [wwi_group_id] = ? AND [valid_to] IS NULL
+    COMPONENT: OLE DB Command 1 Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_PRODUCT_CATEGORY] SET [category_name] = ? WHERE [wwi_group_id] = ?
+    COMPONENT: OLE DB Source Microsoft.OLEDBSource
+      PROP OpenRowset => 
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => SELECT   StockGroupID  AS wwi_group_id,   StockGroupName AS category_name FROM Warehouse.StockGroups ORDER BY StockGroupID
+      PROP SqlCommandVariable => 
+      PROP AccessMode => 2
+    COMPONENT: Slowly Changing Dimension Microsoft.SCD
+      PROP SqlCommand => SELECT [category_name], [wwi_group_id],[valid_from],[valid_to] FROM [dbo].[DIM_PRODUCT_CATEGORY]
+    COMPONENT: Union All Microsoft.UnionAll
+  PIPELINE TASK: None
+    COMPONENT: Lookup Microsoft.Lookup
+      PROP SqlCommand => select * from [dbo].[DIM_PRODUCT]
+    COMPONENT: Lookup 1 Microsoft.Lookup
+      PROP SqlCommand => select * from [dbo].[DIM_PRODUCT_CATEGORY]
+    COMPONENT: OLE DB Destination Microsoft.OLEDBDestination
+      PROP OpenRowset => [dbo].[BRIDGE_PRODUCT_CATEGORY]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => 
+      PROP AccessMode => 0
+    COMPONENT: OLE DB Source Microsoft.OLEDBSource
+      PROP OpenRowset => 
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => SELECT 	si.StockItemID as wwi_stock_item_id 	, sg.StockGroupID as wwi_group_id FROM Warehouse.StockItems si 	JOIN Warehouse.StockItemStockGroups sist on sist.StockItemID = si.StockItemID 	JOIN Warehouse.StockGroups sg on sist.StockGroupID = sg.StockGroupID ORDER BY wwi_stock_item_id
+      PROP SqlCommandVariable => 
+      PROP AccessMode => 2
+
+PACKAGE: Load_Dim_Supplier.dtsx
+  CM: Package.ConnectionManagers[localhost.financial_data_warehouse]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_data_warehouse]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_staging_area]
+  CM: None
+  PIPELINE TASK: None
+    COMPONENT: Derived Column Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+    COMPONENT: Derived Column 1 Microsoft.DerivedColumn
+      PROP Expression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP FriendlyExpression => (DT_DBTIMESTAMP)(@[User::CurrentDate])
+      PROP Expression => (DT_UI4)@[User::LineageKey]
+      PROP FriendlyExpression => (DT_UI4)@[User::LineageKey]
+    COMPONENT: Insert Destination Microsoft.OLEDBDestination
+      PROP OpenRowset => [dbo].[DIM_SUPPLIER]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => 
+      PROP AccessMode => 0
+    COMPONENT: OLE DB Command Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_SUPPLIER] SET [valid_to] = ? WHERE [wwi_supplier_id] = ? AND [valid_to] IS NULL
+    COMPONENT: OLE DB Command 1 Microsoft.OLEDBCommand
+      PROP SqlCommand => UPDATE [dbo].[DIM_SUPPLIER] SET [payment_days] = ?,[supplier_category] = ?,[supplier_name] = ? WHERE [wwi_supplier_id] = ?
+    COMPONENT: Slowly Changing Dimension Microsoft.SCD
+      PROP SqlCommand => SELECT [payment_days], [supplier_category], [supplier_name], [wwi_supplier_id],[valid_from],[valid_to] FROM [dbo].[DIM_SUPPLIER]
+    COMPONENT: staging_area_warehouse Microsoft.OLEDBSource
+      PROP OpenRowset => [Warehouse].[StockItems]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => SELECT   s.SupplierID     AS wwi_supplier_id,   s.SupplierName    AS supplier_name,   sc.SupplierCategoryName AS supplier_category,   s.PaymentDays     AS payment_days FROM Purchasing.Suppliers s JOIN Purchasing.SupplierCategories sc   ON s.SupplierCategoryID = sc.SupplierCategoryID
+      PROP SqlCommandVariable => 
+      PROP AccessMode => 2
+    COMPONENT: Union All Microsoft.UnionAll
+
+PACKAGE: Load_Fact_Inventory.dtsx
+  CM: Package.ConnectionManagers[localhost.wwi_data_warehouse]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_staging_area]
+  CM: None
+  PIPELINE TASK: None
+    COMPONENT: Derived Column Microsoft.DerivedColumn
+      PROP Expression => (DT_STR,8,1252)([YEAR]((DT_DBTIMESTAMP)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[transaction_date]}) * 10000 + [MONTH]((DT_DBTIMESTAMP)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[transaction_date]}) * 100 + [DAY]((DT_DBTIMESTAMP)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[transaction_date]}))
+      PROP FriendlyExpression => (DT_STR,8,1252)(YEAR((DT_DBTIMESTAMP)transaction_date) * 10000 + MONTH((DT_DBTIMESTAMP)transaction_date) * 100 + DAY((DT_DBTIMESTAMP)transaction_date))
+    COMPONENT: Derived Column 1 Microsoft.DerivedColumn
+      PROP Expression => (DT_I4)@[User::LineageKey]
+      PROP FriendlyExpression => (DT_I4)@[User::LineageKey]
+    COMPONENT: Lookup DIM_DATE Microsoft.Lookup
+      PROP SqlCommand => select * from [dbo].[DIM_DATE]
+    COMPONENT: Lookup DIM_PRODUCT Microsoft.Lookup
+      PROP SqlCommand => select * from [dbo].[DIM_PRODUCT]
+    COMPONENT: OLE DB Destination Microsoft.OLEDBDestination
+      PROP OpenRowset => [dbo].[FACT_INVENTORY]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => 
+      PROP AccessMode => 0
+    COMPONENT: OLE DB Source Microsoft.OLEDBSource
+      PROP OpenRowset => 
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => SELECT   sit.StockItemTransactionID  AS wwi_stock_item_transaction_id,   sit.TransactionTypeID    AS transaction_type_id,   sit.TransactionOccurredWhen AS transaction_date,   sit.StockItemID       AS wwi_stock_item_id,   sih.QuantityOnHand      AS quantity_on_hand,   sih.ReorderLevel       AS reorder_level,   sih.TargetStockLevel     AS target_stock_level,   sih.QuantityOnHand      AS last_stocktake_quantity FROM Warehouse.StockItemTransactions sit JOIN Warehouse.StockItemHoldings sih ON sit.StockItemID = sih.StockItemID
+      PROP SqlCommandVariable => 
+      PROP AccessMode => 2
+
+PACKAGE: Load_Fact_Purchase.dtsx
+  CM: Package.ConnectionManagers[localhost.wwi_data_warehouse]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_staging_area]
+  CM: None
+  PIPELINE TASK: None
+    COMPONENT: Derived Column Microsoft.DerivedColumn
+      PROP Expression => (DT_STR,8,1252)([YEAR]((DT_DBTIMESTAMP)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[order_date]}) * 10000 + [MONTH]((DT_DBTIMESTAMP)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[order_date]}) * 100 + [DAY]((DT_DBTIMESTAMP)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[order_date]}))
+      PROP FriendlyExpression => (DT_STR,8,1252)(YEAR((DT_DBTIMESTAMP)order_date) * 10000 + MONTH((DT_DBTIMESTAMP)order_date) * 100 + DAY((DT_DBTIMESTAMP)order_date))
+    COMPONENT: Derived Column 1 Microsoft.DerivedColumn
+      PROP Expression => (DT_I4)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[is_outers_finalized]} == 0 ? 1 : 0
+      PROP FriendlyExpression => (DT_I4)is_outers_finalized == 0 ? 1 : 0
+      PROP Expression => (DT_I4)@[User::LineageKey]
+      PROP FriendlyExpression => (DT_I4)@[User::LineageKey]
+    COMPONENT: Lookup DIM_PRODUCT Microsoft.Lookup
+      PROP SqlCommand => select * from [dbo].[DIM_PRODUCT]
+    COMPONENT: Lookup DIM_SUPPLIER Microsoft.Lookup
+      PROP SqlCommand => select * from [dbo].[DIM_SUPPLIER]
+    COMPONENT: OLE DB Destination Microsoft.OLEDBDestination
+      PROP OpenRowset => [dbo].[FACT_PURCHASE]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => 
+      PROP AccessMode => 0
+    COMPONENT: OLE DB Source Microsoft.OLEDBSource
+      PROP OpenRowset => 
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => SELECT   po.PurchaseOrderID   AS wwi_purchase_order_id,   pol.PurchaseOrderLineID AS wwi_purchase_line_id,   po.OrderDate      AS order_date,   pol.StockItemID     AS wwi_stock_item_id,   po.SupplierID      AS wwi_supplier_id,   pol.OrderedOuters    AS ordered_outers,   pol.ReceivedOuters   AS received_outers,   pol.OrderedOuters * si.QuantityPerOuter AS ordered_quantity,   pol.IsOrderLineFinalized AS is_outers_finalized FROM Purchasing.PurchaseOrders po JOIN Purchasing.PurchaseOrderLines pol ON po.PurchaseOrderID = pol.PurchaseOrderID JOIN Warehouse.StockItems si ON pol.StockItemID = si.StockItemID
+      PROP SqlCommandVariable => 
+      PROP AccessMode => 2
+
+PACKAGE: Load_Fact_Sale.dtsx
+  CM: Package.ConnectionManagers[localhost.wwi_data_warehouse]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_data_warehouse 1]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_staging_area]
+  CM: None
+  CM: Package.ConnectionManagers[localhost.wwi_staging_area 1]
+  CM: None
+  PIPELINE TASK: None
+    COMPONENT: Derived Column Microsoft.DerivedColumn
+      PROP Expression => (DT_STR,8,1252)([YEAR]((DT_DBTIMESTAMP)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvoiceDate]}) * 10000 + [MONTH]((DT_DBTIMESTAMP)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvoiceDate]}) * 100 + [DAY]((DT_DBTIMESTAMP)#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[InvoiceDate]}))
+      PROP FriendlyExpression => (DT_STR,8,1252)(YEAR((DT_DBTIMESTAMP)InvoiceDate) * 10000 + MONTH((DT_DBTIMESTAMP)InvoiceDate) * 100 + DAY((DT_DBTIMESTAMP)InvoiceDate))
+    COMPONENT: Derived Column 1 Microsoft.DerivedColumn
+      PROP Expression => (DT_I4)@[User::LineageKey]
+      PROP FriendlyExpression => (DT_I4)@[User::LineageKey]
+    COMPONENT: Lookup DIM_CITY Microsoft.Lookup
+      PROP SqlCommand => select * from [dbo].[DIM_CITY]
+    COMPONENT: Lookup DIM_CUSTOMER Microsoft.Lookup
+      PROP SqlCommand => select * from [dbo].[DIM_CUSTOMER]
+    COMPONENT: Lookup DIM_DATE Microsoft.Lookup
+      PROP SqlCommand => select * from [dbo].[DIM_DATE]
+    COMPONENT: Lookup DIM_EMPLOYEE Microsoft.Lookup
+      PROP SqlCommand => select * from [dbo].[DIM_EMPLOYEE]
+    COMPONENT: Lookup DIM_PRODUCT Microsoft.Lookup
+      PROP SqlCommand => SELECT * FROM DIM_PRODUCT WHERE is_current = 1
+    COMPONENT: OLE DB Destination Microsoft.OLEDBDestination
+      PROP OpenRowset => [dbo].[FACT_SALES]
+      PROP OpenRowsetVariable => 
+      PROP SqlCommand => 
+      PROP AccessMode => 0
+    COMPONENT: OLE DB Source Microsoft.OLEDBSource
+      PROP OpenRowset => 
+      PROP OpenRowsetVariable => 
+Traceback (most recent call last):
+  File "D:\Tαi li\u1ec7u h\u1ecdc t\u1eadp\Tαi li\u1ec7u trong H\u1ecdc vi\u1ec7n NgΓn hαng\Tαi li\u1ec7u n\u0103m 3\K\u1ef3 2\Kho d\u1eef li\u1ec7u vα kinh doanh th⌠ng minh\test SSIS\WideWorldImposter\parse_ssis2.py", line 28, in <module>
+    print('      PROP', pname, '=>', val)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u1ea5' in position 320: character maps to <undefined>
+      PROP SqlCommand => 

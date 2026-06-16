@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36408.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "WideWorldImposter", "WideWorldImposter.dtproj", "{7E857D51-ED6D-DEA3-6468-D666B454097D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E857D51-ED6D-DEA3-6468-D666B454097D}.Development|Default.ActiveCfg = Development
+		{7E857D51-ED6D-DEA3-6468-D666B454097D}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {304EC91F-31B4-4FF8-99C1-579A7FFD003C}
+	EndGlobalSection
+EndGlobal

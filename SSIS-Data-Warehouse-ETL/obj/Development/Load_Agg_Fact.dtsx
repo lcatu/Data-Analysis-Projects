@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/8/2026 3:54:23 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-MO3FJK4K"
+  DTS:CreatorName="LAPTOP-MO3FJK4K\Lenovo"
+  DTS:DTSID="{43F3CBDC-C64F-46E9-8D63-9171AB2E8533}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1066"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{E44A6270-88DC-4995-AED0-CF75F22AAA70}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.wwi_data_warehouse]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A23E4056-03BE-4A1E-B37F-213178FA50F5}"
+      DTS:ObjectName="localhost.wwi_data_warehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=wwi_data_warehouse;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{A23E4056-03BE-4A1E-B37F-213178FA50F5}localhost.wwi_data_warehouse;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load AGG_SALES_DAILY"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{811C6F9B-A8B8-4127-9DDB-6E67799AD817}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load AGG_SALES_DAILY"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A23E4056-03BE-4A1E-B37F-213178FA50F5}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.AGG_SALES_DAILY;&#xA;&#xA;INSERT INTO dbo.AGG_SALES_DAILY (&#xA;    date_key,&#xA;    total_quantity_sold,&#xA;    total_tax_amount,&#xA;    total_revenue,&#xA;    total_profit,&#xA;    avg_order_value,&#xA;    count_invoices,&#xA;    count_distinct_products&#xA;)&#xA;SELECT&#xA;    date_key,&#xA;    SUM(quantity)                    AS total_quantity_sold,&#xA;    SUM(tax_amount)                  AS total_tax_amount,&#xA;    SUM(total_including_tax)         AS total_revenue,&#xA;    SUM(line_profit)                 AS total_profit,&#xA;    AVG(total_including_tax)         AS avg_order_value,&#xA;    COUNT(DISTINCT wwi_invoice_id)   AS count_invoices,&#xA;    COUNT(DISTINCT product_key)      AS count_distinct_products&#xA;FROM dbo.FACT_SALES&#xA;GROUP BY date_key" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load AGG_SALES_PRODUCT_CITY_DAILY"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0F6F4396-8710-496A-869A-D72FC2E32BF4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load AGG_SALES_PRODUCT_CITY_DAILY"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A23E4056-03BE-4A1E-B37F-213178FA50F5}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.AGG_SALES_PRODUCT_CITY_DAILY &#xA;&#xA;INSERT INTO dbo.AGG_SALES_PRODUCT_CITY_DAILY (&#xA;    date_key,&#xA;    product_key,&#xA;    city_key,&#xA;    total_quantity_sold,&#xA;    total_revenue,&#xA;    total_profit,&#xA;    total_order&#xA;)&#xA;SELECT&#xA;    date_key,&#xA;    product_key,&#xA;    city_key,&#xA;    SUM(quantity)               AS total_quantity_sold,&#xA;    SUM(total_including_tax)    AS total_revenue,&#xA;    SUM(line_profit)            AS total_profit,&#xA;    COUNT(DISTINCT wwi_invoice_id)  AS total_order&#xA;FROM dbo.FACT_SALES&#xA;GROUP BY date_key, product_key, city_key" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CF73CF71-755E-4C9F-B5FD-0F5C43396067}"
+      DTS:From="Package\Load AGG_SALES_DAILY"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load AGG_SALES_PRODUCT_CITY_DAILY" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="204.5,42"
+          Id="Package\Load AGG_SALES_DAILY"
+          TopLeft="245.5,83.4166662523316" />
+        <NodeLayout
+          Size="291.5,42"
+          Id="Package\Load AGG_SALES_PRODUCT_CITY_DAILY"
+          TopLeft="203,194.458332367448" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="348.25,125.416666252332">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69.0416661151167"
+              Start="0,0"
+              End="0,61.5416661151167">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5416661151167" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

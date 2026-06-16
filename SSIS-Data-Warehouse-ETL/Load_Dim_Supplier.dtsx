@@ -1,0 +1,1910 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/30/2026 9:00:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-MO3FJK4K"
+  DTS:CreatorName="LAPTOP-MO3FJK4K\Lenovo"
+  DTS:DTSID="{BD763B9D-5922-41CF-8CD2-63FE6F40FB1F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1066"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{C0BC97D6-8FC8-4BFA-8A64-F529CEAE9DC2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.financial_data_warehouse]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3D4DE883-FDDD-45CE-A2AC-5B8C302498F2}"
+      DTS:ObjectName="localhost.financial_data_warehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=financial_data_warehouse;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{3D4DE883-FDDD-45CE-A2AC-5B8C302498F2}localhost.financial_data_warehouse;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.wwi_data_warehouse]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C3A06EB4-E815-498E-B345-B032A832C5A5}"
+      DTS:ObjectName="localhost.wwi_data_warehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=wwi_data_warehouse;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{C3A06EB4-E815-498E-B345-B032A832C5A5}localhost.wwi_data_warehouse;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.wwi_staging_area]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DAE73109-D67D-421C-92C9-7D6A9BC9C53B}"
+      DTS:ObjectName="localhost.wwi_staging_area">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=wwi_staging_area;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{DAE73109-D67D-421C-92C9-7D6A9BC9C53B}localhost.wwi_staging_area;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{1BB90FDE-3C19-40CC-8D52-D23F2F4A131A}"
+      DTS:ObjectName="LineageKey">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6D52BA91-810C-4C2C-B90E-B7CB25C55450}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LineageKey">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dim_supplier"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2ab9de59-6673-440c-809f-c0c15b16b297}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dim_supplier"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{148fed81-4cd8-4afa-a7b0-9b658fcb086f}"
+          DTS:EvaluateAsExpression="True"
+          DTS:Expression="GETDATE()"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="CurrentDate">
+          <DTS:VariableValue
+            DTS:DataType="7">5/21/2026 12:07:45 AM</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{6CFF26AE-A901-46CA-B897-1E0FCDC0A248}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="CurrentDate1">
+          <DTS:VariableValue
+            DTS:DataType="7">4/30/2026 9:10:34 PM</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dim_supplier\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dim_supplier\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dim_supplier\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\dim_supplier\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dim_supplier\Derived Column.Outputs[Derived Column Output].Columns[valid_to]"
+                      dataType="dbTimeStamp"
+                      description="valid_to"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dim_supplier\Derived Column.Outputs[Derived Column Output].Columns[valid_to]"
+                      name="valid_to"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)(@[User::CurrentDate])</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)(@[User::CurrentDate])</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dim_supplier\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\dim_supplier\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dim_supplier\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dim_supplier\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dim_supplier\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dim_supplier\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\dim_supplier\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Output].Columns[valid_from]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Output].Columns[valid_from]"
+                      name="valid_from"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)(@[User::CurrentDate])</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)(@[User::CurrentDate])</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Output].Columns[lineage_key]"
+                      dataType="ui4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Output].Columns[lineage_key]"
+                      name="lineage_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_UI4)@[User::LineageKey]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_UI4)@[User::LineageKey]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\dim_supplier\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dim_supplier\Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DIM_SUPPLIER]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dim_supplier\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.wwi_data_warehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.wwi_data_warehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].Columns[wwi_supplier_id]"
+                      cachedDataType="i4"
+                      cachedName="wwi_supplier_id"
+                      externalMetadataColumnId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[wwi_supplier_id]"
+                      lineageId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[wwi_supplier_id]" />
+                    <inputColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].Columns[supplier_name]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="supplier_name"
+                      externalMetadataColumnId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[supplier_name]"
+                      lineageId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[supplier_name]" />
+                    <inputColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].Columns[supplier_category]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="supplier_category"
+                      externalMetadataColumnId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[supplier_category]"
+                      lineageId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[supplier_category]" />
+                    <inputColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].Columns[payment_days]"
+                      cachedDataType="i4"
+                      cachedName="payment_days"
+                      externalMetadataColumnId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_days]"
+                      lineageId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[payment_days]" />
+                    <inputColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].Columns[valid_from]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="valid_from"
+                      externalMetadataColumnId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[valid_from]"
+                      lineageId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Output].Columns[valid_from]" />
+                    <inputColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].Columns[lineage_key]"
+                      cachedDataType="ui4"
+                      cachedName="lineage_key"
+                      externalMetadataColumnId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[lineage_key]"
+                      lineageId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Output].Columns[lineage_key]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[supplier_key]"
+                      dataType="i4"
+                      name="supplier_key" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[wwi_supplier_id]"
+                      dataType="i4"
+                      name="wwi_supplier_id" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[supplier_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="supplier_name" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[supplier_category]"
+                      dataType="wstr"
+                      length="255"
+                      name="supplier_category" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_days]"
+                      dataType="i4"
+                      name="payment_days" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[valid_from]"
+                      dataType="dbTimeStamp"
+                      name="valid_from" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[valid_to]"
+                      dataType="dbTimeStamp"
+                      name="valid_to" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[is_current]"
+                      dataType="i4"
+                      name="is_current" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[lineage_key]"
+                      dataType="i4"
+                      name="lineage_key" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dim_supplier\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dim_supplier\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dim_supplier\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dim_supplier\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DIM_SUPPLIER] SET [valid_to] = ? WHERE [wwi_supplier_id] = ? AND [valid_to] IS NULL</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dim_supplier\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.wwi_data_warehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.wwi_data_warehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dim_supplier\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dim_supplier\OLE DB Command.Inputs[OLE DB Command Input].Columns[wwi_supplier_id]"
+                      cachedDataType="i4"
+                      cachedName="wwi_supplier_id"
+                      externalMetadataColumnId="Package\dim_supplier\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[wwi_supplier_id]" />
+                    <inputColumn
+                      refId="Package\dim_supplier\OLE DB Command.Inputs[OLE DB Command Input].Columns[valid_to]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="valid_to"
+                      externalMetadataColumnId="Package\dim_supplier\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\dim_supplier\Derived Column.Outputs[Derived Column Output].Columns[valid_to]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbTimeStamp"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dim_supplier\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\dim_supplier\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dim_supplier\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\dim_supplier\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dim_supplier\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dim_supplier\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dim_supplier\OLE DB Command 1"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command 1"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DIM_SUPPLIER] SET [payment_days] = ?,[supplier_category] = ?,[supplier_name] = ? WHERE [wwi_supplier_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dim_supplier\OLE DB Command 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.wwi_data_warehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.wwi_data_warehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[payment_days]"
+                      cachedDataType="i4"
+                      cachedName="payment_days"
+                      externalMetadataColumnId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[payment_days]" />
+                    <inputColumn
+                      refId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[supplier_category]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="supplier_category"
+                      externalMetadataColumnId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_category]" />
+                    <inputColumn
+                      refId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[supplier_name]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="supplier_name"
+                      externalMetadataColumnId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_name]" />
+                    <inputColumn
+                      refId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[wwi_supplier_id]"
+                      cachedDataType="i4"
+                      cachedName="wwi_supplier_id"
+                      externalMetadataColumnId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[wwi_supplier_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="255"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">17</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dim_supplier\OLE DB Command 1.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dim_supplier\OLE DB Command 1.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dim_supplier\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dim_supplier\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dim_supplier\Slowly Changing Dimension"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="Slowly Changing Dimension"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [payment_days], [supplier_category], [supplier_name], [wwi_supplier_id],[valid_from],[valid_to] FROM [dbo].[DIM_SUPPLIER]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere">[valid_from] IS NOT NULL AND [valid_to] IS NULL</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dim_supplier\Slowly Changing Dimension.Connections[LookupConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.wwi_data_warehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.wwi_data_warehouse]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[payment_days]"
+                      cachedDataType="i4"
+                      cachedName="payment_days"
+                      externalMetadataColumnId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[payment_days]"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[payment_days]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[supplier_category]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="supplier_category"
+                      externalMetadataColumnId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[supplier_category]"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_category]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[supplier_name]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="supplier_name"
+                      externalMetadataColumnId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[supplier_name]"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[wwi_supplier_id]"
+                      cachedDataType="i4"
+                      cachedName="wwi_supplier_id"
+                      externalMetadataColumnId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[wwi_supplier_id]"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[wwi_supplier_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[payment_days]"
+                      dataType="i4"
+                      name="payment_days" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[supplier_category]"
+                      dataType="wstr"
+                      length="255"
+                      name="supplier_category" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[supplier_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="supplier_name" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[wwi_supplier_id]"
+                      dataType="i4"
+                      name="wwi_supplier_id" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[valid_from]"
+                      dataType="dbTimeStamp"
+                      name="valid_from" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[valid_to]"
+                      dataType="dbTimeStamp"
+                      name="valid_to" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dim_supplier\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dim_supplier\Slowly Changing Dimension.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dim_supplier\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dim_supplier\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dim_supplier\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dim_supplier\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dim_supplier\staging_area_warehouse"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="staging_area_warehouse"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Warehouse].[StockItems]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    s.SupplierID          AS wwi_supplier_id,
+    s.SupplierName        AS supplier_name,
+    sc.SupplierCategoryName AS supplier_category,
+    s.PaymentDays         AS payment_days
+FROM Purchasing.Suppliers s
+JOIN Purchasing.SupplierCategories sc 
+    ON s.SupplierCategoryID = sc.SupplierCategoryID</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dim_supplier\staging_area_warehouse.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.wwi_staging_area]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.wwi_staging_area]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[wwi_supplier_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].ExternalColumns[wwi_supplier_id]"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[wwi_supplier_id]"
+                      name="wwi_supplier_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].ExternalColumns[supplier_name]"
+                      length="100"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_name]"
+                      name="supplier_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].ExternalColumns[supplier_category]"
+                      length="50"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_category]"
+                      name="supplier_category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[payment_days]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].ExternalColumns[payment_days]"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[payment_days]"
+                      name="payment_days"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].ExternalColumns[wwi_supplier_id]"
+                      dataType="i4"
+                      name="wwi_supplier_id" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].ExternalColumns[supplier_name]"
+                      dataType="wstr"
+                      length="100"
+                      name="supplier_name" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].ExternalColumns[supplier_category]"
+                      dataType="wstr"
+                      length="50"
+                      name="supplier_category" />
+                    <externalMetadataColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].ExternalColumns[payment_days]"
+                      dataType="i4"
+                      name="payment_days" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[wwi_supplier_id]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[wwi_supplier_id]"
+                      name="wwi_supplier_id" />
+                    <outputColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[supplier_name]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[supplier_name]"
+                      name="supplier_name" />
+                    <outputColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[supplier_category]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[supplier_category]"
+                      name="supplier_category" />
+                    <outputColumn
+                      refId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[payment_days]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Error Output].Columns[payment_days]"
+                      name="payment_days" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dim_supplier\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\dim_supplier\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dim_supplier\Union All.Inputs[Union All Input 1].Columns[wwi_supplier_id]"
+                      cachedDataType="i4"
+                      cachedName="wwi_supplier_id"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[wwi_supplier_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[wwi_supplier_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dim_supplier\Union All.Inputs[Union All Input 1].Columns[supplier_name]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="supplier_name"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[supplier_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dim_supplier\Union All.Inputs[Union All Input 1].Columns[supplier_category]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="supplier_category"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_category]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[supplier_category]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dim_supplier\Union All.Inputs[Union All Input 1].Columns[payment_days]"
+                      cachedDataType="i4"
+                      cachedName="payment_days"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[payment_days]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[payment_days]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\dim_supplier\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dim_supplier\Union All.Inputs[Union All Input 2].Columns[wwi_supplier_id]"
+                      cachedDataType="i4"
+                      cachedName="wwi_supplier_id"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[wwi_supplier_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[wwi_supplier_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dim_supplier\Union All.Inputs[Union All Input 2].Columns[supplier_name]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="supplier_name"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[supplier_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dim_supplier\Union All.Inputs[Union All Input 2].Columns[supplier_category]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="supplier_category"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_category]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[supplier_category]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dim_supplier\Union All.Inputs[Union All Input 2].Columns[payment_days]"
+                      cachedDataType="i4"
+                      cachedName="payment_days"
+                      lineageId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output].Columns[payment_days]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[payment_days]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\dim_supplier\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dim_supplier\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[wwi_supplier_id]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[wwi_supplier_id]"
+                      name="wwi_supplier_id" />
+                    <outputColumn
+                      refId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[supplier_name]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[supplier_name]"
+                      name="supplier_name" />
+                    <outputColumn
+                      refId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[supplier_category]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[supplier_category]"
+                      name="supplier_category" />
+                    <outputColumn
+                      refId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[payment_days]"
+                      dataType="i4"
+                      lineageId="Package\dim_supplier\Union All.Outputs[Union All Output 1].Columns[payment_days]"
+                      name="payment_days" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dim_supplier.Paths[Derived Column Output]"
+              endId="Package\dim_supplier\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\dim_supplier\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\dim_supplier.Paths[Derived Column Output1]"
+              endId="Package\dim_supplier\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\dim_supplier\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\dim_supplier.Paths[Historical Attribute Inserts Output]"
+              endId="Package\dim_supplier\Derived Column.Inputs[Derived Column Input]"
+              name="Historical Attribute Inserts Output"
+              startId="Package\dim_supplier\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]" />
+            <path
+              refId="Package\dim_supplier.Paths[Inferred Member Updates Output]"
+              endId="Package\dim_supplier\OLE DB Command 1.Inputs[OLE DB Command Input]"
+              name="Inferred Member Updates Output"
+              startId="Package\dim_supplier\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]" />
+            <path
+              refId="Package\dim_supplier.Paths[New Output]"
+              endId="Package\dim_supplier\Union All.Inputs[Union All Input 1]"
+              name="New Output"
+              startId="Package\dim_supplier\Slowly Changing Dimension.Outputs[New Output]" />
+            <path
+              refId="Package\dim_supplier.Paths[OLE DB Command Output]"
+              endId="Package\dim_supplier\Union All.Inputs[Union All Input 2]"
+              name="OLE DB Command Output"
+              startId="Package\dim_supplier\OLE DB Command.Outputs[OLE DB Command Output]" />
+            <path
+              refId="Package\dim_supplier.Paths[OLE DB Source Output]"
+              endId="Package\dim_supplier\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+              name="OLE DB Source Output"
+              startId="Package\dim_supplier\staging_area_warehouse.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\dim_supplier.Paths[Union All Output 1]"
+              endId="Package\dim_supplier\Derived Column 1.Inputs[Derived Column Input]"
+              name="Union All Output 1"
+              startId="Package\dim_supplier\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Insert Lineage START"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CC754C8F-0D9F-475E-91C8-01AFF77C9E91}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert Lineage START"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C3A06EB4-E815-498E-B345-B032A832C5A5}"
+          SQLTask:SqlStatementSource="INSERT INTO Integration.Lineage &#xA;    (data_load_started, table_name, was_successful)&#xA;OUTPUT INSERTED.lineage_key&#xA;VALUES &#xA;    (SYSDATETIME(), 'DIM_CUSTOMER', 0);"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::LineageKey" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update is_current"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{72019A51-1A61-4ED5-B87B-963A17238254}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update is_current"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C3A06EB4-E815-498E-B345-B032A832C5A5}"
+          SQLTask:SqlStatementSource="update DIM_CUSTOMER set is_current = 0 where valid_to is not null and is_current = 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Lineage FAILED"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D7585927-BE3A-4052-BC37-0CD67C6C47D5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Lineage FAILED"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C3A06EB4-E815-498E-B345-B032A832C5A5}"
+          SQLTask:SqlStatementSource="UPDATE Integration.Lineage&#xA;SET data_load_completed = SYSDATETIME(),&#xA;    was_successful = 0&#xA;WHERE lineage_key = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::LineageKey"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update Lineage SUCCESS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{A9886F4F-598C-4905-911E-2A32FCE5DB5A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update Lineage SUCCESS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C3A06EB4-E815-498E-B345-B032A832C5A5}"
+          SQLTask:SqlStatementSource="UPDATE Integration.Lineage&#xA;SET data_load_completed = SYSDATETIME(),&#xA;    was_successful = 1&#xA;WHERE lineage_key = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::LineageKey"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{60E28F0A-B1B2-4F60-82CD-B5C3E5640BD2}"
+      DTS:From="Package\Insert Lineage START"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\dim_supplier" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{77D37393-9A3A-4D32-AFF9-632E694CB5F9}"
+      DTS:From="Package\dim_supplier"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Update is_current" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{252B942E-D443-461F-B9E2-48C2B3BBE5AD}"
+      DTS:From="Package\Update is_current"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Update Lineage SUCCESS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{49338AE3-77DC-4EE4-A8AC-533A1B47D508}"
+      DTS:From="Package\dim_supplier"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Update Lineage FAILED"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="138.5,42"
+          Id="Package\dim_supplier"
+          TopLeft="189.652777777778,152.685184724813" />
+        <NodeLayout
+          Size="182.5,42"
+          Id="Package\Insert Lineage START"
+          TopLeft="173.111111111111,64.0972219038479" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Update is_current"
+          TopLeft="177.388888888889,257.351850573571" />
+        <NodeLayout
+          Size="192.5,42"
+          Id="Package\Update Lineage FAILED"
+          TopLeft="423,157.624999217068" />
+        <NodeLayout
+          Size="206.5,42"
+          Id="Package\Update Lineage SUCCESS"
+          TopLeft="163.055555555556,359.305553770866" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="261.631944444444,106.097221903848">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46.5879628209651"
+              Start="0,0"
+              End="0,39.0879628209651">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.0879628209651" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="258.645833333333,194.685184724813">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62.6666658487585"
+              Start="0,0"
+              End="0,55.1666658487585">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.1666658487585" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="262.347222222223,299.351850573571">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.953703197295"
+              Start="0,0"
+              End="0,52.453703197295">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.453703197295" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="328.152777777778,176.155091970941">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="94.847222222222,0"
+              Start="0,0"
+              End="87.347222222222,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="87.347222222222,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="28.432263454861,5,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\dim_supplier">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="197,42"
+          Id="Package\dim_supplier\staging_area_warehouse"
+          TopLeft="136.25,5.5" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\dim_supplier\Slowly Changing Dimension"
+          TopLeft="129.75,107.5" />
+        <EdgeLayout
+          Id="Package\dim_supplier.Paths[OLE DB Source Output]"
+          TopLeft="234.75,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.5,42"
+          Id="Package\dim_supplier\Derived Column"
+          TopLeft="19.5,209.5" />
+        <EdgeLayout
+          Id="Package\dim_supplier.Paths[Historical Attribute Inserts Output]"
+          TopLeft="184.25,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-87.5,60.0000000000001"
+              Start="0,0"
+              End="-87.5,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5015673981192" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5015673981192"
+                    Point2="0,20.5015673981192"
+                    Point3="-4,20.5015673981192" />
+                  <mssgle:LineSegment
+                    End="-83.5,20.5015673981192" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-83.5,20.5015673981192"
+                    Point2="-87.5,20.5015673981192"
+                    Point3="-87.5,24.5015673981192" />
+                  <mssgle:LineSegment
+                    End="-87.5,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-118.80638671875,25.5015673981192,150.1127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="168.5,42"
+          Id="Package\dim_supplier\OLE DB Command"
+          TopLeft="5.5,311.5" />
+        <EdgeLayout
+          Id="Package\dim_supplier.Paths[Derived Column Output]"
+          TopLeft="93.25,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\dim_supplier\Union All"
+          TopLeft="174.25,413.5" />
+        <EdgeLayout
+          Id="Package\dim_supplier.Paths[New Output]"
+          TopLeft="234.75,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="18.8333333333333,264"
+              Start="0,0"
+              End="18.8333333333333,256.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,152.332789559543" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,152.332789559543"
+                    Point2="0,156.332789559543"
+                    Point3="4,156.332789559543" />
+                  <mssgle:LineSegment
+                    End="14.8333333333333,156.332789559543" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.8333333333333,156.332789559543"
+                    Point2="18.8333333333333,156.332789559543"
+                    Point3="18.8333333333333,160.332789559543" />
+                  <mssgle:LineSegment
+                    End="18.8333333333333,256.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-17.6747200520833,161.332789559543,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dim_supplier.Paths[OLE DB Command Output]"
+          TopLeft="89.75,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="126.166666666667,59.9999999999999"
+              Start="0,0"
+              End="126.166666666667,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5301794453507" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5301794453507"
+                    Point2="0,35.5301794453507"
+                    Point3="4,35.5301794453507" />
+                  <mssgle:LineSegment
+                    End="122.166666666667,35.5301794453507" />
+                  <mssgle:CubicBezierSegment
+                    Point1="122.166666666667,35.5301794453507"
+                    Point2="126.166666666667,35.5301794453507"
+                    Point3="126.166666666667,39.5301794453507" />
+                  <mssgle:LineSegment
+                    End="126.166666666667,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="163,42"
+          Id="Package\dim_supplier\Derived Column 1"
+          TopLeft="153.25,515.5" />
+        <EdgeLayout
+          Id="Package\dim_supplier.Paths[Union All Output 1]"
+          TopLeft="234.75,455.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="160.5,42"
+          Id="Package\dim_supplier\Insert Destination"
+          TopLeft="154.5,617.5" />
+        <EdgeLayout
+          Id="Package\dim_supplier.Paths[Derived Column Output1]"
+          TopLeft="234.75,557.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="177,42"
+          Id="Package\dim_supplier\OLE DB Command 1"
+          TopLeft="296.25,209.5" />
+        <EdgeLayout
+          Id="Package\dim_supplier.Paths[Inferred Member Updates Output]"
+          TopLeft="285.25,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="99.5,60"
+              Start="0,0"
+              End="99.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5015673981191" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5015673981191"
+                    Point2="0,20.5015673981191"
+                    Point3="4,20.5015673981191" />
+                  <mssgle:LineSegment
+                    End="95.5,20.5015673981191" />
+                  <mssgle:CubicBezierSegment
+                    Point1="95.5,20.5015673981191"
+                    Point2="99.5,20.5015673981191"
+                    Point3="99.5,24.5015673981191" />
+                  <mssgle:LineSegment
+                    End="99.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.65298828125,25.5015673981191,148.8059765625,11.658203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dim_supplier\staging_area_warehouse">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dim_supplier\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionID&gt;{C3A06EB4-E815-498E-B345-B032A832C5A5}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[DIM_SUPPLIER]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;staging_area_warehouse.Outputs[OLE DB Source Output].Columns[payment_days]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;payment_days&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_category]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;supplier_category&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;staging_area_warehouse.Outputs[OLE DB Source Output].Columns[supplier_name]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;supplier_name&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;staging_area_warehouse.Outputs[OLE DB Source Output].Columns[wwi_supplier_id]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;wwi_supplier_id&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command 1&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;true&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;true&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn&gt;valid_from&lt;/StartDateColumn&gt;
+  &lt;EndDateColumn&gt;valid_to&lt;/EndDateColumn&gt;
+  &lt;DateVariable&gt;User::CurrentDate&lt;/DateVariable&gt;
+  &lt;EnableInferredSupport&gt;true&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dim_supplier\Insert Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -6,7 +6,7 @@
 | 1 | [🎓 Student Performance Prediction](#1-student-performance-prediction) | Python · sklearn | R² = 0.96, 4 regression models |
 | 2 | [☕ Highlands Coffee Analysis](#2-highlands-coffee-business-analysis) | Power BI | RFM analysis, interactive dashboard |
 | 3 | [🏅 Gold Store Management DB](#3-gold-store-management-database) | Oracle SQL · PL/SQL | 15-table schema, RMAN backup |
-| 4 | [🕷️ Legal NER Pipeline](#4-web-crawling--ner-annotation-pipeline) | Python · NLP | 150+ legal docs, BIO annotation |
+| 4 | [📦 Wide World Importers Data Warehouse](#4-wide-world-importers-data-warehouse) | SSIS · SQL Server | Star schema, ETL pipeline |
 
 ---
 
@@ -61,20 +61,20 @@ Thiết kế và triển khai hệ thống cơ sở dữ liệu quản lý cửa
 
 ---
 
-## 4. 🕷️ Web Crawling & NER Annotation Pipeline
+## 4. 📦 Wide World Importers Data Warehouse
 
-**Period:** 01/2026 – 02/2026 &nbsp;|&nbsp; **Role:** Personal Project
+**Period:** 03/2026 – 05/2026 &nbsp;|&nbsp; **Grade:** A+ &nbsp;|&nbsp; **Role:** Team Leader
 
-Xây dựng pipeline thu thập và tiền xử lý văn bản pháp lý để tạo dataset phục vụ huấn luyện mô hình NLP.
+Thiết kế Data Warehouse và xây dựng quy trình ETL tự động để tích hợp dữ liệu từ nhiều nguồn khác nhau.
 
 **Results:**
-- Crawl và xử lý **150+ văn bản pháp lý**
-- Annotate dữ liệu theo định dạng **BIO** hỗ trợ NER model training
-- Pipeline chuẩn hóa và làm sạch dữ liệu văn bản
+- Thiết kế **star schema** với 5 Dimension tables và 3 Fact tables.
+- Xây dựng **ETL pipeline bằng SSIS** trích xuất dữ liệu từ SQL Server, PostgreSQL, Excel.
+- Áp dụng **SCD Type 2** để lưu trữ lịch sử và tạo bảng tổng hợp tối ưu hóa báo cáo.
 
-**Tech stack:** `Python` `BeautifulSoup` / `Scrapy` `spaCy` `regex`
+**Tech stack:** `SSIS` `Data Warehouse` `ETL` `SQL Server` `PostgreSQL`
 
-📁 [View Project →](./Legal-NER-Pipeline/)
+📁 [View Project →](./SSIS-Data-Warehouse-ETL/)
 
 ---
 
@@ -84,8 +84,8 @@ Xây dựng pipeline thu thập và tiền xử lý văn bản pháp lý để t
 Languages   : Python 3.x · SQL · PL/SQL
 ML/DL       : scikit-learn · pandas · numpy · statsmodels
 Visualization: matplotlib · seaborn · Power BI
-Database    : Oracle DB · RMAN
-NLP         : spaCy · BIO annotation
+Database    : Oracle DB · SQL Server · PostgreSQL
+Data Eng    : SSIS · ETL · Data Warehouse
 Tools       : Jupyter Notebook · Git · VS Code
 ```
 
